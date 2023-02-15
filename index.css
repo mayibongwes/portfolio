@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+/* Color Pallete Variables */
+:root {
+    --light: #F5F5F5;
+    --green: #53917E;
+    --brown: #63535B;
+    --red:#f25757;
+    --red: #6D1A36;
+    --orange: #F75C03;
+  }
+  
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #333333;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
+#site{
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+    /* height: 12px;
+    width: 12px;
+    background: #888; */
+}
+
+/* ::-webkit-scrollbar-thumb {
+    background: #333;
+    -webkit-border-radius: 1ex;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar-corner {
+    background: #000;
+} */
+
+#site::-webkit-scrollbar {
+    display: none;
+  }
+
+#home, #about {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+#home{
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#home .top-row{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+#home .top-row h1{
+    font-size: 1.2em;
+}
+
+#home .top-row .social-links{
+    margin-right: 35px;
+}
+
+#home .top-row .social-links a{
+    margin-left: 15px;
+    line-height: 1.7em;
+}
+
+#home .content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#home .content img{
+    width: 150px;
+    border-radius: 50%;
+    opacity: .9;
+    border: 3px solid #e3e3e3;
+}
+
+#home .content p{
+    display: block;
+    font-size: 1.5em;
+    margin-top: 15px;
+    min-width: 500px;
+    max-width: 50%;
+    min-height: 145px;
+    text-align: center;
+    line-height: 2em;
+}
+
+/* scroll bar */
+.scroll-down {
+    /* bottom: 0; */
+    height: 100px;
+    /* left: 0; */
+    /* position: absolute; */
+    /* right: 0; */
+    text-align: center;
+    z-index: 1;
+  }
+
+  .scroll-down-text {
+    color: var(--green);
+  }
+
+  .scroll-down-bar {
+    align-self: flex-end;
+    display: inline-block;
+    height: 65px;
+    margin: 0 auto;
+  }
+  .scroll-down-bar::before {
+    animation: scrollBall 1.5s ease-in-out infinite;
+    background: var(--green);
+    border-radius: 50%;
+    content: '';
+    display: inline-block;
+    height: 10px;
+    left: calc(50% - 5px);
+    width: 10px;
+  }
+  @-moz-keyframes scrollBall {
+    40%, 60% {
+      transform: translateY(35px);
+    }
+  }
+  @-webkit-keyframes scrollBall {
+    40%, 60% {
+      transform: translateY(35px);
+    }
+  }
+  @-o-keyframes scrollBall {
+    40%, 60% {
+      transform: translateY(35px);
+    }
+  }
+  @keyframes scrollBall {
+    40%, 60% {
+      transform: translateY(35px);
+    }
+  }
+  
+/* End of */
+
+#about{
+    background-color: var(--brown);
+    background-image: url('./assets/brown\ geometry.png');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#about .content{
+    max-width: 50%;
+    padding:20px;
+    display: grid;
+}
+
+#about .content .first{
+    background-color: var(--light);
+    grid-column: 1;
+    grid-row: 1;
+    transform: rotate(-190deg);
+    outline: 15px solid var(--green);
+}
+
+#about .content .second{
+    background-color: var(--light);
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 100;
+    padding: 20px;
+    outline: 15px solid var(--green);
+}
+
+#about .content .second hr{
+    width: 50%;
+    margin-top: 15px;
+    border: none;
+    outline: none;
+    height: 1px;
+    background-color: var(--orange);
+}
+
+#about .content .second p{
+    margin-top: 15px;
+    line-height: 1.7em;
+}
+
+aside{
+    position: fixed;
+    top: 50%;
+    right: -10px;
+    z-index: 999;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    opacity: .5;
+}
+
+aside a{
+    text-decoration: none;
+    color: var(--light);
+    transition: all .4s;
+}
+
+aside a:hover{
+    transform: scale(1.1);
+}
+
+aside .pipe{
+    width: 1px;
+    height: 55px;
+    border-left: 1px dotted var(--brown);
+}
+
+

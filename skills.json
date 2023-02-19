@@ -1,0 +1,54 @@
+{
+	"skills": [
+        {
+            "name": "Python",
+            "devicon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+        },
+        {
+            "name": "Progress 4GL",
+            "icon": "./assets/logo/progress.svg"
+        },
+        {
+            "name": "JavaScript",
+            "devicon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+        },
+
+        {
+            "name": "HTML",
+            "devicon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+        },
+        {
+            "name": "CSS",
+            "devicon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+        },
+        {
+            "name": "React",
+            "devicon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+        },
+        {
+            "name": "Git",
+            "devicon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+        },
+        {
+            "name": "Amazon AWS",
+            "devicon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+        },
+        {
+            "name": "Bootstrap",
+            "devicon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain-wordmark.svg"
+        },
+        {
+            "name": "Firebase",
+            "devicon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
+        },
+        {
+            "name": "Jira",
+            "devicon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg"
+        },
+        {
+            "name": "Trello",
+            "devicon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg"
+        }
+    ]
+}
+

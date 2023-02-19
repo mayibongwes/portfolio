@@ -207,6 +207,41 @@ html {
     line-height: 1.7em;
 }
 
+#skills{
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--green);
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+#skills .content{
+  display: flex;
+  flex-direction: column;
+}
+
+#skills .content h1{
+  margin-bottom: 50px;
+}
+
+#skills .content .skill-list{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#skills .content .skill-list .skill-item{
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#skills .content .skill-list .skill-item p{
+  margin-top: 20px;
+}
+
 aside{
     position: fixed;
     top: 50%;

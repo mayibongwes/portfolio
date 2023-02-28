@@ -33,12 +33,8 @@ class App{
         let skillsElems = "";
 
         skills.forEach((skill) => {
-            let icon;
-            if (skill.icon){
-                icon = "<img src='" + skill.icon + "' />"
-            }else if(skill.devicon){
-                icon = "<img src='" + skill.devicon + "' />"
-            }
+            let icon = "<img src='" + skill.icon + "' alt='" + skill.name +"' class='icon-"+ skill.name + "'/>"
+            
 
             const skillName = `<p>${skill.name}</p>`;
 

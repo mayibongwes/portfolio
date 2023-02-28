@@ -226,20 +226,32 @@ html {
 }
 
 #skills .content .skill-list{
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
 }
 
 #skills .content .skill-list .skill-item{
   margin: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--light);
+  padding: 15px;
+  align-items: center;
+}
+
+#skills .content .skill-list .skill-item img{
+  width: 100px;
 }
 
 #skills .content .skill-list .skill-item p{
   margin-top: 20px;
+}
+
+.icon-Progress{
+  width: 250px !important;
+  align-self: center;
+  justify-self: center;
 }
 
 aside{

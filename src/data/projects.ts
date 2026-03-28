@@ -20,7 +20,7 @@ export const projects: Project[] = [
   {
     title: 'Medical administration software',
     description:
-      'Leading a small team building software that supports healthcare administration workflows. The domain demands reliability, traceability, and honest communication — no glamour, just things working when people need them.',
+      'Building software that supports healthcare administration workflows with a small team. The domain demands reliability, traceability, and honest communication. No glamour, just things working when people need them.',
     status: 'professional',
     context: 'Team lead · Healthcare dept · MIP, Johannesburg',
     tags: ['TypeScript', 'Team leadership', 'Healthcare systems'],
@@ -37,7 +37,7 @@ export const projects: Project[] = [
   {
     title: 'Community collaboration platform',
     description:
-      'A tool for gated communities and neighbourhoods to organise, communicate, and act together — built around the real patterns of how communities actually function rather than how platforms think they should.',
+      'A tool for gated communities and neighbourhoods to organise, communicate, and act together. Built around the real patterns of how communities actually function, not how platforms think they should.',
     status: 'building',
     context: 'Side project · Building with friends',
     tags: ['Product', 'Community', 'Local networks'],
@@ -54,7 +54,7 @@ export const projects: Project[] = [
   {
     title: 'Exploring the artistic side of engineering',
     description:
-      'An ongoing curiosity about what engineering looks like when it serves creative expression rather than utility — building things for the experience of making them, not just the function. Currently exploring where code, play, and visual craft intersect.',
+      'An ongoing curiosity about what engineering looks like when it serves creative expression rather than utility. Building for the experience of making, not just the function. Exploring where code, play, and visual craft meet.',
     status: 'exploring',
     context: 'Personal direction · Collaborating with friends',
     tags: ['Creative engineering', 'Artistic expression', 'Craft'],

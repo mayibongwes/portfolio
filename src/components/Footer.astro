@@ -1,5 +1,4 @@
 ---
-
 ---
 
 <footer class="footer">
@@ -8,39 +7,200 @@
     <p class="footer__copy">
       &copy; {new Date().getFullYear()} Mayibongwe Sibanda
     </p>
-    <p class="footer__built">
-      Handcrafted with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
-    </p>
+
+    <div class="footer__legal">
+      <button
+        class="footer__legal-btn"
+        id="legal-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="legal-tooltip"
+      >
+        Licensing &amp; Privacy
+        <svg class="footer__chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+          <path d="M2 6.5L5 3.5L8 6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="footer__tooltip" id="legal-tooltip" role="tooltip" aria-hidden="true">
+        <p class="footer__tooltip-section">
+          <span class="footer__tooltip-label">Privacy</span>
+          Your display preference (theme and dark/light mode) is stored locally in your browser. No personal data is collected or shared.
+        </p>
+        <p class="footer__tooltip-section">
+          <span class="footer__tooltip-label">Built with</span>
+          <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a> — MIT License
+        </p>
+        <p class="footer__tooltip-section">
+          <span class="footer__tooltip-label">Fonts</span>
+          Inter, Playfair Display, JetBrains Mono — self-hosted via
+          <a href="https://fontsource.org" target="_blank" rel="noopener noreferrer">Fontsource</a>,
+          SIL Open Font License
+        </p>
+      </div>
+    </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    padding-block: var(--space-md);
+    padding-bottom: var(--space-lg);
   }
 
   .footer__inner {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     padding-top: var(--space-md);
+    flex-wrap: wrap;
   }
 
-  .footer__copy,
-  .footer__built {
+  .footer__copy {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     letter-spacing: 0.05em;
     color: var(--text-dim);
   }
 
-  .footer__built a {
-    color: var(--text-muted);
+  /* Legal button */
+  .footer__legal {
+    position: relative;
   }
 
-  .footer__built a:hover {
+  .footer__legal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color var(--transition);
+  }
+
+  .footer__legal-btn:hover {
+    color: var(--accent);
+  }
+
+  .footer__chevron {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .footer__legal-btn[aria-expanded="true"] .footer__chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Tooltip */
+  .footer__tooltip {
+    position: absolute;
+    bottom: calc(100% + 0.75rem);
+    right: 0;
+    width: clamp(240px, 80vw, 320px);
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.1rem;
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    /* Hidden state */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(6px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+
+  .footer__tooltip.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* Small arrow pointing down toward the button */
+  .footer__tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    right: 1.25rem;
+    width: 8px;
+    height: 8px;
+    background: var(--surface-elevated);
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    transform: rotate(45deg);
+  }
+
+  .footer__tooltip-section {
+    font-size: var(--text-xs);
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .footer__tooltip-section + .footer__tooltip-section {
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer__tooltip-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.2rem;
+  }
+
+  .footer__tooltip a {
+    color: var(--text-muted);
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 2px;
+    transition: color var(--transition);
+  }
+
+  .footer__tooltip a:hover {
     color: var(--accent);
   }
 </style>
+
+<script>
+  const btn = document.getElementById('legal-toggle');
+  const tip = document.getElementById('legal-tooltip');
+
+  if (btn && tip) {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      tip.setAttribute('aria-hidden', String(open));
+      tip.classList.toggle('is-open', !open);
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!btn.contains(e.target as Node) && !tip.contains(e.target as Node)) {
+        btn.setAttribute('aria-expanded', 'false');
+        tip.setAttribute('aria-hidden', 'true');
+        tip.classList.remove('is-open');
+      }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        btn.setAttribute('aria-expanded', 'false');
+        tip.setAttribute('aria-hidden', 'true');
+        tip.classList.remove('is-open');
+      }
+    });
+  }
+</script>

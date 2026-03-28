@@ -26,10 +26,10 @@
     /* Header scrolled background — overridden in light mode */
     --header-bg-scrolled: rgba(9, 9, 11, 0.88);
 
-    /* Fonts */
-    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+    /* Fonts (self-hosted via Fontsource) */
+    --font-sans: "Inter Variable", "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Playfair Display", "Georgia", serif;
-    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
 
     /* Fluid type (320 -> 1200) */
     --text-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);

@@ -26,7 +26,7 @@
     <line x1="58" y1="14" x2="52" y2="22" stroke-width="1" opacity="0.12"/>
     <line x1="22" y1="14" x2="28" y2="22" stroke-width="1" opacity="0.12"/>
   </g>
-  <text x="80" y="205" font-family="'Courier New', Courier, monospace" font-size="13" letter-spacing="4.5" fill="#c9a55c" opacity="0.8">JOHANNESBURG &middot; SOFTWARE ENGINEERING</text>
+  <text x="80" y="205" font-family="'Courier New', Courier, monospace" font-size="13" letter-spacing="4.5" fill="#c9a55c" opacity="0.8">JOHANNESBURG &#183; SOFTWARE ENGINEERING</text>
   <line x1="80" y1="224" x2="430" y2="224" stroke="#c9a55c" stroke-width="0.8" opacity="0.35"/>
   <text x="80" y="320" font-family="Georgia, 'Times New Roman', serif" font-size="84" font-weight="400" letter-spacing="-2" fill="#ece7df">Engineer.</text>
   <text x="80" y="412" font-family="Georgia, 'Times New Roman', serif" font-size="84" font-weight="400" letter-spacing="-2" fill="#ece7df">Builder.</text>

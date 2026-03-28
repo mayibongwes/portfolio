@@ -23,6 +23,9 @@
     --accent-dim: rgba(201, 165, 92, 0.12);
     --accent-glow: rgba(201, 165, 92, 0.08);
 
+    /* Header scrolled background — overridden in light mode */
+    --header-bg-scrolled: rgba(9, 9, 11, 0.88);
+
     /* Fonts */
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
     --font-display: "Playfair Display", "Georgia", serif;
@@ -172,6 +175,45 @@
   --accent-light: #e2c888;
   --accent-dim:   rgba(201, 165, 92, 0.12);
   --accent-glow:  rgba(201, 165, 92, 0.08);
+}
+
+/* ─── Light mode ────────────────────────────────────────────────────────────
+   Toggled via data-mode="light" on <html> by the sun/moon button in the header.
+   Accent colours stay the same per theme — only the background/text flip.
+   ─────────────────────────────────────────────────────────────────────────── */
+[data-mode="light"] {
+  color-scheme: light;
+
+  --bg-deep:           #e8e3db;
+  --bg:                #f2ede6;
+  --surface:           #faf7f3;
+  --surface-elevated:  #ffffff;
+  --surface-glass:     rgba(242, 237, 230, 0.88);
+  --border:            rgba(0, 0, 0, 0.08);
+  --border-strong:     rgba(0, 0, 0, 0.16);
+
+  --text:              #1a1714;
+  --text-muted:        #5a544e;
+  --text-dim:          #9c968e;
+
+  --header-bg-scrolled: rgba(242, 237, 230, 0.92);
+}
+
+/* In light mode, primary button text must stay dark regardless of --bg-deep */
+[data-mode="light"] .btn--primary {
+  color: #1a1714;
+}
+[data-mode="light"] .btn--primary:hover {
+  color: #1a1714;
+}
+
+/* Theme B accent is near-white — invisible on a light background.
+   Override to a warm charcoal so it still reads. */
+[data-theme="B"][data-mode="light"] {
+  --accent:       #6e6760;
+  --accent-light: #4e4840;
+  --accent-dim:   rgba(110, 103, 96, 0.1);
+  --accent-glow:  rgba(110, 103, 96, 0.06);
 }
 
 @layer layout {

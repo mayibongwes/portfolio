@@ -41,12 +41,16 @@ const isDev = import.meta.env.DEV;
       rel="stylesheet"
     />
     <title>{title}</title>
-    <!-- Restore saved theme before first paint to prevent flash -->
+    <!-- Restore saved theme + mode before first paint to prevent flash -->
     <script is:inline>
       (function () {
-        var saved = localStorage.getItem('portfolio-theme');
-        if (saved && /^[A-D]$/.test(saved)) {
-          document.documentElement.dataset.theme = saved;
+        var theme = localStorage.getItem('portfolio-theme');
+        if (theme && /^[A-D]$/.test(theme)) {
+          document.documentElement.dataset.theme = theme;
+        }
+        var mode = localStorage.getItem('portfolio-mode');
+        if (mode === 'light') {
+          document.documentElement.dataset.mode = 'light';
         }
       })();
     </script>

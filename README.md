@@ -30,6 +30,4 @@ Static output is written to `dist/`.
 
 If you use the default `*.github.io` URL without a custom domain, set `base` in `astro.config.mjs` to your project path (e.g. `/portfolio/`) and redeploy.
 
-## Private notes
 
-The `private/` folder is **gitignored**. It holds career and LinkedIn checklists for local use and manual copy to Google Drive—not published on GitHub.

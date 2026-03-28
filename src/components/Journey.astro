@@ -1,0 +1,126 @@
+---
+const milestones = [
+  { year: '2013', label: 'Civil engineering studies — CJC, Johannesburg' },
+  { year: '2015', label: 'First client websites — self-taught, selling and shipping for real businesses' },
+  { year: '2018', label: 'Joined current company as a junior intern — the start of a long-form growth story' },
+  { year: '2022', label: 'NQF L5 Systems Development + ALX-T / Udacity Full Stack Nanodegree' },
+  { year: '2022', label: 'Promoted to intermediate Software Engineer' },
+  { year: '2026', label: 'Promoted to Software Engineering Lead — small team, healthcare department' },
+];
+---
+
+<section id="journey" class="section">
+  <div class="wrap">
+    <div class="journey__header reveal">
+      <p class="section-label">Path</p>
+      <h2>A non-linear journey</h2>
+      <p class="journey__intro">
+        Civil engineering, a call-centre season, self-taught client hustle,
+        formal credentials, and years of growth inside one organisation.
+        Every chapter added something the next one needed.
+      </p>
+    </div>
+
+    <div class="journey__timeline">
+      {milestones.map((m, i) => (
+        <div class={`journey__item reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+          <div class="journey__marker">
+            <span class="journey__dot"></span>
+            {i < milestones.length - 1 && <span class="journey__line"></span>}
+          </div>
+          <div class="journey__content">
+            <span class="journey__year">{m.year}</span>
+            <p class="journey__label">{m.label}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .journey__header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .journey__header h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .journey__intro {
+    max-width: 36rem;
+    font-size: var(--text-lg);
+    line-height: 1.7;
+  }
+
+  .journey__timeline {
+    display: flex;
+    flex-direction: column;
+    max-width: 40rem;
+  }
+
+  .journey__item {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  .journey__marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.35rem;
+  }
+
+  .journey__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent);
+    background: var(--bg-deep);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .journey__item:last-child .journey__dot {
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(201, 165, 92, 0.4);
+  }
+
+  .journey__line {
+    flex: 1;
+    width: 1px;
+    background: var(--border-strong);
+    margin-top: 0.35rem;
+  }
+
+  .journey__content {
+    padding-bottom: 2.5rem;
+  }
+
+  .journey__item:last-child .journey__content {
+    padding-bottom: 0;
+  }
+
+  .journey__year {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+  }
+
+  .journey__label {
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .journey__item:last-child .journey__label {
+    color: var(--text);
+    font-weight: 500;
+  }
+</style>

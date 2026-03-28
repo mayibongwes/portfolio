@@ -1,0 +1,148 @@
+---
+import type { CaseStudy } from '../data/caseStudies';
+
+type Props = { studies: CaseStudy[] };
+const { studies } = Astro.props;
+---
+
+<section id="work" class="section">
+  <div class="wrap">
+    <div class="work__header reveal">
+      <p class="section-label">Selected work</p>
+      <h2>Case studies</h2>
+      <p class="work__intro">
+        Three lenses on how I work — leading delivery in healthcare,
+        the client projects that built my foundations, and a disciplined
+        side collaboration. Each one is structured, skimmable, proof-first.
+      </p>
+    </div>
+
+    <div class="work__grid">
+      {studies.map((s, i) => (
+        <a href={`/work/${s.slug}`} class={`work__card reveal reveal-delay-${i + 1}`}>
+          <div class="work__card-inner">
+            <span class="work__index">{String(i + 1).padStart(2, '0')}</span>
+            <div class="work__content">
+              <h3 class="work__title">{s.title}</h3>
+              <p class="work__tagline">{s.tagline}</p>
+              <div class="work__tags">
+                {s.stack.slice(0, 3).map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+            </div>
+            <span class="work__arrow" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .work__header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .work__header h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .work__intro {
+    max-width: 36rem;
+    font-size: var(--text-lg);
+    line-height: 1.7;
+  }
+
+  .work__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .work__card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    transition: background var(--transition);
+  }
+
+  .work__card:hover {
+    background: var(--surface-elevated);
+    color: inherit;
+  }
+
+  .work__card-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+    gap: var(--space-md);
+    padding: var(--space-md);
+  }
+
+  .work__index {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--accent-dim);
+    -webkit-text-stroke: 1px var(--accent);
+    -webkit-text-fill-color: transparent;
+    padding-top: 0.1em;
+  }
+
+  .work__content {
+    min-width: 0;
+  }
+
+  .work__title {
+    font-size: var(--text-xl);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    transition: color var(--transition);
+  }
+
+  .work__card:hover .work__title {
+    color: var(--accent-light);
+  }
+
+  .work__tagline {
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .work__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .work__arrow {
+    color: var(--text-dim);
+    transition: color var(--transition), transform var(--transition);
+    padding-top: 0.25rem;
+  }
+
+  .work__card:hover .work__arrow {
+    color: var(--accent);
+    transform: translate(3px, -3px);
+  }
+
+  @media (max-width: 768px) {
+    .work__card-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+    .work__index { font-size: var(--text-2xl); }
+    .work__arrow { display: none; }
+  }
+</style>

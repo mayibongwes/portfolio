@@ -1,0 +1,153 @@
+---
+// Only rendered in dev builds — see BaseLayout.astro
+const themes = [
+  { id: 'A', label: 'Ochre',       swatch: '#c47a3a', desc: 'Raw amber / earthy' },
+  { id: 'B', label: 'Bone',        swatch: '#cec6bc', desc: 'Typographic / no colour' },
+  { id: 'C', label: 'Terracotta',  swatch: '#b85c3a', desc: 'Red earth / bold' },
+  { id: 'D', label: 'Gold',        swatch: '#c9a55c', desc: 'Polished gold / default' },
+];
+---
+
+<aside class="tp" id="theme-picker" aria-label="Dev theme picker">
+  <div class="tp__label">Theme</div>
+  <div class="tp__options" role="group" aria-label="Select theme">
+    {themes.map((t) => (
+      <button
+        class="tp__btn"
+        data-theme-id={t.id}
+        title={`${t.label} — ${t.desc}`}
+        type="button"
+      >
+        <span class="tp__swatch" style={`background: ${t.swatch}`}></span>
+        <span class="tp__id">{t.id}</span>
+      </button>
+    ))}
+  </div>
+  <div class="tp__active-label" id="tp-current-label">D — Gold</div>
+</aside>
+
+<style>
+  .tp {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 9000;
+    background: rgba(15, 15, 18, 0.92);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+    padding: 0.65rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.4);
+    font-family: var(--font-mono);
+  }
+
+  .tp__label {
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    writing-mode: initial;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    width: 100%;
+    text-align: center;
+  }
+
+  .tp__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .tp__btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.5rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.4);
+    transition: all 0.15s ease;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .tp__btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .tp__btn.is-active {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .tp__swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tp__id {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  .tp__active-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    opacity: 0.7;
+    padding-top: 0.25rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  const themeNames: Record<string, string> = {
+    A: 'A — Ochre',
+    B: 'B — Bone',
+    C: 'C — Terra',
+    D: 'D — Gold',
+  };
+
+  const STORAGE_KEY = 'portfolio-theme';
+  const picker = document.getElementById('theme-picker');
+  const currentLabel = document.getElementById('tp-current-label');
+
+  function applyTheme(id: string) {
+    document.documentElement.dataset.theme = id;
+    localStorage.setItem(STORAGE_KEY, id);
+    if (currentLabel) currentLabel.textContent = themeNames[id] ?? id;
+    picker?.querySelectorAll<HTMLButtonElement>('.tp__btn').forEach((btn) => {
+      btn.classList.toggle('is-active', btn.dataset.themeId === id);
+    });
+  }
+
+  // Read saved theme or fall back to whatever was set by BaseLayout
+  const saved = localStorage.getItem(STORAGE_KEY);
+  const initial = saved ?? document.documentElement.dataset.theme ?? 'D';
+  applyTheme(initial);
+
+  picker?.querySelectorAll<HTMLButtonElement>('.tp__btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.themeId;
+      if (id) applyTheme(id);
+    });
+  });
+</script>

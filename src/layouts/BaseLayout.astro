@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+import ThemePicker from '../components/ThemePicker.astro';
+
+type Props = {
+  title: string;
+  description: string;
+  path?: string;
+};
+
+const { title, description, path = '/' } = Astro.props;
+const canonical = new URL(path, Astro.site ?? 'https://mayi.co.za').href;
+
+// Read theme from env at build time. Falls back to 'D' (polished gold).
+// In dev: override via the floating theme picker — saves to localStorage.
+// For production: set PUBLIC_THEME in GitHub repo → Settings → Variables → Actions.
+const defaultTheme = (import.meta.env.PUBLIC_THEME ?? 'D').toUpperCase();
+const isDev = import.meta.env.DEV;
+---
+
+<!doctype html>
+<html lang="en-ZA" data-theme={defaultTheme}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#09090b" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <!-- Restore saved theme before first paint to prevent flash -->
+    <script is:inline>
+      (function () {
+        var saved = localStorage.getItem('portfolio-theme');
+        if (saved && /^[A-D]$/.test(saved)) {
+          document.documentElement.dataset.theme = saved;
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+    <!-- Theme picker: only included in the dev build, stripped from production -->
+    {isDev && <ThemePicker />}
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

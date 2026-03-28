@@ -1,0 +1,118 @@
+---
+
+---
+
+<section id="now" class="section now">
+  <div class="wrap">
+    <div class="now__inner">
+      <div class="now__header reveal">
+        <p class="section-label">Right now</p>
+        <h2>A living snapshot</h2>
+        <p class="now__meta">Last updated: March 2026</p>
+      </div>
+      <div class="now__grid">
+        <div class="now__col reveal reveal-delay-1">
+          <h3 class="now__col-title">At work</h3>
+          <ul class="now__list">
+            <li>Leading a small team building medical administration software in a healthcare department.</li>
+            <li>Two months into a new lead role — learning what effective leadership actually looks like in practice, not just in theory.</li>
+            <li>Focused on clarity: better definitions of done, lighter processes, more reliable releases.</li>
+          </ul>
+        </div>
+        <div class="now__col reveal reveal-delay-2">
+          <h3 class="now__col-title">Building</h3>
+          <ul class="now__list">
+            <li>A foodie app for finding hidden culinary gems — the places algorithms never surface.</li>
+            <li>A community collaboration platform for gated communities and neighbourhoods.</li>
+            <li>Both in early development with long-time collaborators. Launching regardless.</li>
+          </ul>
+        </div>
+        <div class="now__col reveal reveal-delay-3">
+          <h3 class="now__col-title">Learning & exploring</h3>
+          <ul class="now__list">
+            <li>Electronics fundamentals — building toward DIY security and physical computing projects.</li>
+            <li>Thinking seriously about game development as a creative direction with friends.</li>
+            <li>Considering structured study: a BA or IT leadership programme from 2026.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .now {
+    background: var(--surface);
+    border-block: 1px solid var(--border);
+  }
+
+  .now__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .now__header h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .now__meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+  }
+
+  .now__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  .now__col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .now__col-title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 500;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 0.01em;
+  }
+
+  .now__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .now__list li {
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--text-muted);
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .now__list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+    font-size: 0.75em;
+    top: 0.3em;
+  }
+
+  @media (max-width: 900px) {
+    .now__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

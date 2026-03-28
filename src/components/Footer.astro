@@ -1,0 +1,46 @@
+---
+
+---
+
+<footer class="footer">
+  <hr class="divider" />
+  <div class="wrap footer__inner">
+    <p class="footer__copy">
+      &copy; {new Date().getFullYear()} Mayibongwe Sibanda
+    </p>
+    <p class="footer__built">
+      Handcrafted with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-block: var(--space-md);
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-md);
+  }
+
+  .footer__copy,
+  .footer__built {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+  }
+
+  .footer__built a {
+    color: var(--text-muted);
+  }
+
+  .footer__built a:hover {
+    color: var(--accent);
+  }
+</style>

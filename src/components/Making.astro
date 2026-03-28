@@ -1,0 +1,232 @@
+---
+import { projects, statusLabel } from '../data/projects';
+import type { ProjectStatus } from '../data/projects';
+
+const statusOrder: ProjectStatus[] = ['professional', 'building', 'learning', 'exploring'];
+const sorted = [...projects].sort(
+  (a, b) => statusOrder.indexOf(a.status) - statusOrder.indexOf(b.status)
+);
+
+const statusDot: Record<ProjectStatus, string> = {
+  professional: '#c9a55c',
+  building:     '#6db89a',
+  learning:     '#7b9fd4',
+  exploring:    '#a78bd4',
+};
+---
+
+<section id="making" class="section making">
+  <div class="wrap">
+    <div class="making__header reveal">
+      <p class="section-label">Work &amp; making</p>
+      <h2>Things I'm building</h2>
+      <p class="making__intro">
+        Professional and personal, finished and in motion.
+        Honest labels — no inflated claims, no hiding that something is still just starting.
+      </p>
+    </div>
+
+    <div class="making__legend reveal">
+      {statusOrder.map((s) => (
+        <span class="making__legend-item">
+          <span class="making__dot" style={`background: ${statusDot[s]}`}></span>
+          {statusLabel[s]}
+        </span>
+      ))}
+    </div>
+
+    <ul class="making__list">
+      {sorted.map((p, i) => (
+        <li class={`making__item reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+          <div class="making__status-col">
+            <span class="making__status-dot" style={`background: ${statusDot[p.status]}`}></span>
+          </div>
+          <div class="making__body">
+            <div class="making__top">
+              <h3 class="making__title">{p.title}</h3>
+              <span class="making__badge" data-status={p.status}>{statusLabel[p.status]}</span>
+            </div>
+            <p class="making__desc">{p.description}</p>
+            <div class="making__meta">
+              <span class="making__context">{p.context}</span>
+              <div class="making__tags">
+                {p.tags.map((t) => <span class="tag">{t}</span>)}
+              </div>
+            </div>
+          </div>
+          {p.link && (
+            <a href={p.link} class="making__link" target="_blank" rel="noopener noreferrer" aria-label={`Visit ${p.title}`}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .making__header {
+    margin-bottom: var(--space-md);
+  }
+
+  .making__header h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .making__intro {
+    max-width: 36rem;
+    font-size: var(--text-lg);
+    line-height: 1.7;
+  }
+
+  .making__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .making__legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+
+  .making__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .making__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .making__item {
+    display: grid;
+    grid-template-columns: 2rem 1fr auto;
+    gap: 1.5rem;
+    padding-block: var(--space-md);
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+    transition: background var(--transition);
+  }
+
+  .making__item:last-child {
+    border-bottom: none;
+  }
+
+  .making__status-col {
+    padding-top: 0.6rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .making__status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .making__body {
+    min-width: 0;
+  }
+
+  .making__top {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .making__title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--text);
+  }
+
+  .making__badge {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.6rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  .making__badge[data-status="building"]   { color: #6db89a; border-color: rgba(109,184,154,0.25); }
+  .making__badge[data-status="learning"]   { color: #7b9fd4; border-color: rgba(123,159,212,0.25); }
+  .making__badge[data-status="exploring"]  { color: #a78bd4; border-color: rgba(167,139,212,0.25); }
+  .making__badge[data-status="professional"] { color: var(--accent); border-color: var(--accent-dim); }
+
+  .making__desc {
+    font-size: var(--text-base);
+    line-height: 1.75;
+    margin-bottom: 0.9rem;
+    max-width: 42rem;
+  }
+
+  .making__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .making__context {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+  }
+
+  .making__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .making__link {
+    color: var(--text-dim);
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: color var(--transition), border-color var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .making__link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .making__item {
+      grid-template-columns: 1.5rem 1fr;
+    }
+    .making__link { display: none; }
+  }
+</style>

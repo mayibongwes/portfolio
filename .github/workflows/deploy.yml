@@ -1,0 +1,55 @@
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install and build
+        # PUBLIC_THEME controls which colour accent is baked into the static build.
+        # To change theme for production:
+        #   GitHub repo → Settings → Secrets and variables → Actions → Variables
+        #   Create (or update) a variable named PUBLIC_THEME with value A, B, C, or D.
+        # If not set, defaults to D (polished gold).
+        run: |
+          npm ci
+          npm run build
+        env:
+          PUBLIC_THEME: ${{ vars.PUBLIC_THEME || 'D' }}
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

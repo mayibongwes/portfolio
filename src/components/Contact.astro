@@ -1,0 +1,78 @@
+---
+
+---
+
+<section id="contact" class="section contact">
+  <div class="glow contact__glow"></div>
+  <div class="wrap contact__wrap">
+    <div class="contact__left reveal">
+      <p class="section-label">Contact</p>
+      <h2>Let's build<br/> something that matters<span class="contact__accent">.</span></h2>
+    </div>
+    <div class="contact__right reveal reveal-delay-2">
+      <p class="contact__body">
+        Reach out on LinkedIn or drop an email. I'm based in Johannesburg —
+        open to conversations about building things, leading teams, collaboration,
+        or just trading notes on what's being made.
+      </p>
+      <div class="contact__links">
+        <a class="btn btn--primary" href="https://www.linkedin.com/in/mayibongwe" rel="noopener noreferrer" target="_blank">
+          LinkedIn
+          <svg width="12" height="12" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+            <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="btn btn--outline" href="mailto:mayibongwes@gmail.com">Email me</a>
+        <a class="btn btn--outline" href="https://github.com/mayibongwe" rel="noopener noreferrer" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact__glow {
+    bottom: -200px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+  }
+
+  .contact__wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  .contact__left h2 {
+    line-height: 1.1;
+  }
+
+  .contact__accent {
+    color: var(--accent);
+  }
+
+  .contact__body {
+    font-size: var(--text-lg);
+    line-height: 1.75;
+    margin-bottom: var(--space-md);
+  }
+
+  .contact__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 768px) {
+    .contact__wrap {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+  }
+</style>

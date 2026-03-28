@@ -1,0 +1,338 @@
+@layer base, layout, components, utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+
+    /* Palette: warm obsidian + aged gold + ivory */
+    --bg-deep: #09090b;
+    --bg: #0f0f12;
+    --surface: #16161a;
+    --surface-elevated: #1c1c22;
+    --surface-glass: rgba(22, 22, 26, 0.65);
+    --border: rgba(255, 255, 255, 0.06);
+    --border-strong: rgba(255, 255, 255, 0.12);
+
+    --text: #ece7df;
+    --text-muted: #8e8a82;
+    --text-dim: #5c5952;
+
+    /* Theme D (default): Polished gold */
+    --accent: #c9a55c;
+    --accent-light: #e2c888;
+    --accent-dim: rgba(201, 165, 92, 0.12);
+    --accent-glow: rgba(201, 165, 92, 0.08);
+
+    /* Fonts */
+    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+    --font-display: "Playfair Display", "Georgia", serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    /* Fluid type (320 -> 1200) */
+    --text-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+    --text-sm: clamp(0.8125rem, 0.78rem + 0.18vw, 0.875rem);
+    --text-base: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+    --text-lg: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.625rem);
+    --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2.125rem);
+    --text-3xl: clamp(1.875rem, 1.4rem + 2.4vw, 3rem);
+    --text-4xl: clamp(2.25rem, 1.5rem + 3.75vw, 4rem);
+    --text-5xl: clamp(2.75rem, 1.6rem + 5.5vw, 5.5rem);
+
+    /* Spacing */
+    --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+    --space-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1.25rem);
+    --space-md: clamp(1.5rem, 1rem + 2.5vw, 3rem);
+    --space-lg: clamp(3rem, 2rem + 5vw, 6rem);
+    --space-xl: clamp(5rem, 3rem + 8vw, 10rem);
+
+    --max-w: 72rem;
+    --max-w-prose: 42rem;
+
+    --radius: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg-deep);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(201, 165, 92, 0.3);
+    color: var(--text);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-wrap: balance;
+  }
+
+  h1 { font-size: var(--text-5xl); }
+  h2 { font-size: var(--text-3xl); }
+  h3 { font-size: var(--text-xl); }
+
+  p {
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  p + p { margin-top: 1em; }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  a:hover {
+    color: var(--accent-light);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  img { display: block; max-width: 100%; }
+
+  strong { color: var(--text); font-weight: 500; }
+}
+
+/* ─── Theme overrides ───────────────────────────────────────────────────────
+   Applied via data-theme="A|B|C|D" on <html>.
+   Set the default in .env: PUBLIC_THEME=D
+   Controlled at build time and in dev via the floating theme picker.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Theme A — Ochre / Raw amber
+   Earthier, warmer. Closer to a lion's coat in the field than polished metal.
+   Grounded builder energy. My recommendation. */
+[data-theme="A"] {
+  --accent:       #c47a3a;
+  --accent-light: #d9925a;
+  --accent-dim:   rgba(196, 122, 58, 0.12);
+  --accent-glow:  rgba(196, 122, 58, 0.08);
+}
+
+/* Theme B — Bone / Typographic
+   No colour accent. Warm off-white on obsidian.
+   Very editorial — lets Playfair Display carry the expression.
+   Confident, restrained, zero noise. */
+[data-theme="B"] {
+  --accent:       #cec6bc;
+  --accent-light: #e0d8d0;
+  --accent-dim:   rgba(206, 198, 188, 0.1);
+  --accent-glow:  rgba(206, 198, 188, 0.05);
+}
+
+/* Theme C — Terracotta / Red earth
+   Bold South African feel. Red-clay soil, warmth, life.
+   Most distinctive — stands out against every other dev portfolio.
+   Reads as artistic and confident. */
+[data-theme="C"] {
+  --accent:       #b85c3a;
+  --accent-light: #cc7254;
+  --accent-dim:   rgba(184, 92, 58, 0.12);
+  --accent-glow:  rgba(184, 92, 58, 0.08);
+}
+
+/* Theme D — Polished gold (default)
+   What is currently live. Timeless, premium editorial feel.
+   Works well. Gold references the lion totem directly. */
+[data-theme="D"] {
+  --accent:       #c9a55c;
+  --accent-light: #e2c888;
+  --accent-dim:   rgba(201, 165, 92, 0.12);
+  --accent-glow:  rgba(201, 165, 92, 0.08);
+}
+
+@layer layout {
+  .wrap {
+    width: min(100% - 2rem, var(--max-w));
+    margin-inline: auto;
+    padding-inline: var(--space-sm);
+  }
+
+  .section {
+    position: relative;
+    padding-block: var(--space-xl);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+@layer components {
+  /* Section label */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-sm);
+  }
+
+  .section-label::before {
+    content: "";
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-radius: 100px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn--primary {
+    background: var(--accent);
+    color: var(--bg-deep);
+    border-color: var(--accent);
+  }
+
+  .btn--primary:hover {
+    background: var(--accent-light);
+    border-color: var(--accent-light);
+    color: var(--bg-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(201, 165, 92, 0.2);
+  }
+
+  .btn--outline {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--border-strong);
+  }
+
+  .btn--outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  /* Divider */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong) 20%, var(--border-strong) 80%, transparent);
+    border: none;
+    margin: 0;
+  }
+
+  /* Prose */
+  .prose {
+    max-width: var(--max-w-prose);
+  }
+
+  .prose p {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+  }
+
+  .prose p + p {
+    margin-top: 1.25em;
+  }
+}
+
+@layer utilities {
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Glow backdrop */
+  .glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+    filter: blur(80px);
+    z-index: -1;
+  }
+}

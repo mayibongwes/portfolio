@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { caseStudies, getCaseStudy } from '../../data/caseStudies';
+
+export function getStaticPaths() {
+  return caseStudies.map((c) => ({ params: { slug: c.slug } }));
+}
+
+const { slug } = Astro.params;
+const study = getCaseStudy(slug!);
+if (!study) {
+  throw new Error(`Unknown case study slug: ${slug}`);
+}
+
+const title = `${study.title} — Mayibongwe Sibanda`;
+const description = study.summary;
+const path = `/work/${study.slug}`;
+
+const sections = [
+  { label: 'Problem', content: study.problem },
+  { label: 'Constraints', content: study.constraints },
+  { label: 'My role', content: study.role },
+  { label: 'Approach', content: study.approach },
+  { label: 'Outcome', content: study.outcome },
+  { label: 'Learnings', content: study.learnings },
+];
+---
+
+<BaseLayout title={title} description={description} path={path}>
+  <Header />
+  <main>
+    <article class="section case-study">
+      <div class="wrap">
+        <div class="case-study__header reveal">
+          <a href="/#work" class="case-study__back">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Selected work
+          </a>
+          <h1 class="case-study__title">{study.title}</h1>
+          <p class="case-study__tagline">{study.tagline}</p>
+        </div>
+
+        <div class="case-study__summary reveal reveal-delay-1">
+          <p class="prose">{study.summary}</p>
+        </div>
+
+        <div class="case-study__body">
+          {sections.map((s, i) => (
+            <div class={`case-study__section reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+              <h2 class="case-study__section-label">{s.label}</h2>
+              <p>{s.content}</p>
+            </div>
+          ))}
+
+          <div class="case-study__section reveal">
+            <h2 class="case-study__section-label">Stack &amp; focus</h2>
+            <div class="case-study__tags">
+              {study.stack.map((t) => <span class="tag">{t}</span>)}
+            </div>
+          </div>
+        </div>
+
+        <div class="case-study__footer reveal">
+          <a class="btn btn--primary" href="/#work">More case studies</a>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .case-study {
+    padding-top: 8rem;
+  }
+
+  .case-study__header {
+    max-width: 44rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .case-study__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: var(--space-md);
+    transition: color var(--transition);
+  }
+
+  .case-study__back:hover {
+    color: var(--accent);
+  }
+
+  .case-study__title {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-sm);
+  }
+
+  .case-study__tagline {
+    font-size: var(--text-xl);
+    font-style: italic;
+    font-family: var(--font-display);
+    color: var(--text-muted);
+  }
+
+  .case-study__summary {
+    max-width: 44rem;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .case-study__summary p {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+  }
+
+  .case-study__body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    max-width: 44rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .case-study__section {
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .case-study__section:last-child {
+    border-bottom: none;
+  }
+
+  .case-study__section-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .case-study__section p {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+  }
+
+  .case-study__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .case-study__footer {
+    padding-top: var(--space-md);
+  }
+</style>

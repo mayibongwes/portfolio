@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Page not found — Mayibongwe Sibanda"
+  description="The page you requested does not exist."
+  path="/404"
+>
+  <Header />
+  <main class="section" style="min-height: 60vh; display: flex; align-items: center;">
+    <div class="wrap" style="text-align: center;">
+      <p class="section-label" style="justify-content: center;">404</p>
+      <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-sm);">Page not found</h1>
+      <p style="font-size: var(--text-lg); margin-bottom: var(--space-md);">
+        This page does not exist, or has been moved.
+      </p>
+      <a class="btn btn--primary" href="/">Back home</a>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

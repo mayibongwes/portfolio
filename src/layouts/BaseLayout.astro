@@ -24,7 +24,7 @@ type Props = {
 const { title, description, path = '/' } = Astro.props;
 const siteBase = Astro.site ?? 'https://mayi.co.za';
 const canonical = new URL(path, siteBase).href;
-const ogImage = new URL('og.svg', siteBase).href;
+const ogImage = new URL('og.png', siteBase).href;
 
 // Read theme from env at build time. Falls back to 'D' (polished gold).
 // In dev: override via the floating theme picker — saves to localStorage.
@@ -67,6 +67,7 @@ const jsonLd = {
     <meta property="og:url"         content={canonical} />
     <meta property="og:type"        content="website" />
     <meta property="og:image"       content={ogImage} />
+    <meta property="og:image:type"   content="image/png" />
     <meta property="og:image:width"  content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt"   content="Mayibongwe Sibanda — Engineer. Builder. Curious." />

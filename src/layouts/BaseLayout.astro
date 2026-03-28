@@ -11,6 +11,10 @@ import '@fontsource/playfair-display/600-italic.css';
 import '@fontsource-variable/jetbrains-mono';
 import ThemePicker from '../components/ThemePicker.astro';
 
+// Preload URLs resolved by Vite at build time — no hardcoded hashes needed
+import interLatinUrl from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import playfairLatinUrl from '@fontsource/playfair-display/files/playfair-display-latin-400-normal.woff2?url';
+
 type Props = {
   title: string;
   description: string;
@@ -18,13 +22,34 @@ type Props = {
 };
 
 const { title, description, path = '/' } = Astro.props;
-const canonical = new URL(path, Astro.site ?? 'https://mayi.co.za').href;
+const siteBase = Astro.site ?? 'https://mayi.co.za';
+const canonical = new URL(path, siteBase).href;
+const ogImage = new URL('og.svg', siteBase).href;
 
 // Read theme from env at build time. Falls back to 'D' (polished gold).
 // In dev: override via the floating theme picker — saves to localStorage.
 // For production: set PUBLIC_THEME in GitHub repo → Settings → Variables → Actions.
 const defaultTheme = (import.meta.env.PUBLIC_THEME ?? 'D').toUpperCase();
 const isDev = import.meta.env.DEV;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Mayibongwe Sibanda',
+  jobTitle: 'Software Engineer — Lead',
+  url: 'https://mayi.co.za',
+  description:
+    'Software Engineering Lead in healthcare, building apps on the side, and always making things. Based in Johannesburg.',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Johannesburg',
+    addressCountry: 'ZA',
+  },
+  sameAs: [
+    'https://www.linkedin.com/in/mayibongwe',
+    'https://github.com/mayibongwes',
+  ],
+};
 ---
 
 <!doctype html>
@@ -35,15 +60,34 @@ const isDev = import.meta.env.DEV;
     <meta name="description" content={description} />
     <meta name="theme-color" content="#09090b" />
     <link rel="canonical" href={canonical} />
-    <meta property="og:title" content={title} />
+
+    <!-- Open Graph -->
+    <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta property="og:url"         content={canonical} />
+    <meta property="og:type"        content="website" />
+    <meta property="og:image"       content={ogImage} />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt"   content="Mayibongwe Sibanda — Engineer. Builder. Curious." />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImage} />
+
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+
+    <!-- Preload critical fonts — tells the browser to fetch before CSS is parsed -->
+    <link rel="preload" as="font" type="font/woff2" href={interLatinUrl}    crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={playfairLatinUrl} crossorigin />
+
     <title>{title}</title>
+
+    <!-- JSON-LD Person schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <!-- Restore saved theme + mode before first paint to prevent flash -->
     <script is:inline>
       (function () {

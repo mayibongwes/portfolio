@@ -25,6 +25,15 @@ export const projects: Project[] = [
     context: 'Team lead · Healthcare dept · MIP, Johannesburg',
     tags: ['TypeScript', 'Team leadership', 'Healthcare systems'],
   },
+  {
+    title: 'Bitsync — personal finance and health dashboard',
+    description:
+      'A compact dashboard built for daily use: budget tracking with categories and projected vs actual, health metrics including steps, sleep, water, and workouts. Built it because I needed it. Beta is live and in active use. Mobile companion apps are the next phase.',
+    status: 'building',
+    context: 'Side project · Live beta · bitsync.co.za',
+    tags: ['Product', 'Finance', 'Health tracking', 'Dashboard'],
+    link: 'https://www.bitsync.co.za',
+  },
   // Hidden gems — uncomment when ready to show publicly (discuss with collaborator first)
   // {
   //   title: 'Hidden gems — a foodie discovery app',

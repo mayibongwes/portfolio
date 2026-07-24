@@ -18,17 +18,9 @@ export const statusLabel: Record<ProjectStatus, string> = {
 
 export const projects: Project[] = [
   {
-    title: 'Medical administration software',
+    title: 'Bitsync',
     description:
-      'Building software that supports healthcare administration workflows with a small team. The domain demands reliability, traceability, and honest communication. No glamour, just things working when people need them.',
-    status: 'professional',
-    context: 'Team lead · Healthcare dept · MIP, Johannesburg',
-    tags: ['TypeScript', 'Team leadership', 'Healthcare systems'],
-  },
-  {
-    title: 'Bitsync — personal finance and health dashboard',
-    description:
-      'A compact dashboard built for daily use: budget tracking with categories and projected vs actual, health metrics including steps, sleep, water, and workouts. Built it because I needed it. Beta is live and in active use. Mobile companion apps are the next phase.',
+      'A personal finance and health dashboard I built for my own daily use. Budgets with categories and projected vs actual spend, plus steps, sleep, water, and workouts all in one place. I made it because I wanted it to exist, and now I use it every day. The beta is live and mobile companion apps are next.',
     status: 'building',
     context: 'Side project · Live beta · bitsync.co.za',
     tags: ['Product', 'Finance', 'Health tracking', 'Dashboard'],
@@ -36,17 +28,17 @@ export const projects: Project[] = [
   },
   // Hidden gems — uncomment when ready to show publicly (discuss with collaborator first)
   // {
-  //   title: 'Hidden gems — a foodie discovery app',
+  //   title: 'Hidden gems, a foodie discovery app',
   //   description:
-  //     'An app for people who care about food. Not another restaurant aggregator — a way to surface the places worth knowing: the unassuming spots, the local legends, the finds that never make the algorithm.',
+  //     'An app for people who actually care about food. Not another restaurant aggregator, but a way to surface the places worth knowing: the unassuming spots, the local legends, the finds that never make the algorithm.',
   //   status: 'building',
   //   context: 'Side project · Building with friends',
   //   tags: ['Product', 'Community', 'Food & culture'],
   // },
   {
-    title: 'Community collaboration platform',
+    title: 'Community platform',
     description:
-      'A tool for gated communities and neighbourhoods to organise, communicate, and act together. Built around the real patterns of how communities actually function, not how platforms think they should.',
+      'A tool for gated communities and neighbourhoods to organise, talk to each other, and actually get things done together. Built with friends, and shaped around how communities really work rather than how an app thinks they should.',
     status: 'building',
     context: 'Side project · Building with friends',
     tags: ['Product', 'Community', 'Local networks'],
@@ -55,17 +47,25 @@ export const projects: Project[] = [
   // {
   //   title: 'DIY electronics and security projects',
   //   description:
-  //     'Learning the basics of electronics so I can build and tinker with physical security projects — starting with fundamentals, working toward something I can hold in my hands.',
+  //     'Learning the basics of electronics so I can build and tinker with physical security gadgets. Starting with the fundamentals and working toward something I can actually hold in my hands.',
   //   status: 'learning',
   //   context: 'Personal exploration · Electronics fundamentals',
   //   tags: ['Hardware', 'Security', 'Tinkering'],
   // },
   {
-    title: 'Exploring the artistic side of engineering',
+    title: 'Engineering as a creative outlet',
     description:
-      'An ongoing curiosity about what engineering looks like when it serves creative expression rather than utility. Building for the experience of making, not just the function. Exploring where code, play, and visual craft meet.',
+      'A running experiment in what code looks like when it exists for the joy of making rather than pure utility. Playing around with where code, visuals, and a bit of play meet, usually alongside friends.',
     status: 'exploring',
-    context: 'Personal direction · Collaborating with friends',
-    tags: ['Creative engineering', 'Artistic expression', 'Craft'],
+    context: 'Personal direction · With friends',
+    tags: ['Creative engineering', 'Art', 'Craft'],
+  },
+  {
+    title: 'The day job',
+    description:
+      'Software for healthcare administration, built with a small team. Not the flashy stuff, but the kind of work where reliability and clear communication matter more than anything. It pays for the fun projects above.',
+    status: 'professional',
+    context: 'Day job · Healthcare · Johannesburg',
+    tags: ['TypeScript', 'Healthcare systems'],
   },
 ];

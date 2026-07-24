@@ -2,7 +2,7 @@
 import { projects, statusLabel } from '../data/projects';
 import type { ProjectStatus } from '../data/projects';
 
-const statusOrder: ProjectStatus[] = ['professional', 'building', 'learning', 'exploring'];
+const statusOrder: ProjectStatus[] = ['building', 'exploring', 'learning', 'professional'];
 const sorted = [...projects].sort(
   (a, b) => statusOrder.indexOf(a.status) - statusOrder.indexOf(b.status)
 );
@@ -18,11 +18,11 @@ const statusDot: Record<ProjectStatus, string> = {
 <section id="making" class="section making">
   <div class="wrap">
     <div class="making__header reveal">
-      <p class="section-label">Work &amp; making</p>
-      <h2>Things I'm building</h2>
+      <p class="section-label">Projects</p>
+      <h2>Stuff I'm building</h2>
       <p class="making__intro">
-        Professional and personal, finished and in motion.
-                Honest labels. No inflated claims, no hiding that something is still early.
+        A mix of side projects, experiments, and the one that pays the bills.
+        Some are live, some are half-built, all of them are things I actually wanted to exist.
       </p>
     </div>
 
@@ -120,10 +120,17 @@ const statusDot: Record<ProjectStatus, string> = {
     display: grid;
     grid-template-columns: 2rem 1fr auto;
     gap: 1.5rem;
-    padding-block: var(--space-md);
+    padding: var(--space-md) 1rem;
+    margin-inline: -1rem;
+    border-radius: var(--radius-lg);
     border-bottom: 1px solid var(--border);
     align-items: start;
-    transition: background var(--transition);
+    transition: background var(--transition), transform var(--transition);
+  }
+
+  .making__item:hover {
+    background: var(--surface);
+    transform: translateX(4px);
   }
 
   .making__item:last-child {

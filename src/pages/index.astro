@@ -4,13 +4,12 @@ import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import Making from '../components/Making.astro';
 import Now from '../components/Now.astro';
-import Journey from '../components/Journey.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 
-const title = 'Mayibongwe Sibanda — Engineer. Builder. Curious.';
+const title = 'Mayibongwe Sibanda, software engineer and side-project builder';
 const description =
-  'Software Engineer — Lead at a healthcare department, building apps on the side and always making things. Based in Johannesburg.';
+  'Software engineer in Johannesburg. This is where my side projects live, from a personal finance and health dashboard to whatever I am tinkering with next.';
 ---
 
 <BaseLayout title={title} description={description} path="/">
@@ -20,8 +19,6 @@ const description =
     <hr class="divider" />
     <Making />
     <Now />
-    <hr class="divider" />
-    <Journey />
     <hr class="divider" />
     <Contact />
   </main>

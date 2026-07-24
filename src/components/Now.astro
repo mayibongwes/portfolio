@@ -6,33 +6,30 @@
   <div class="wrap">
     <div class="now__inner">
       <div class="now__header reveal">
-        <p class="section-label">Right now</p>
-        <h2>A living snapshot</h2>
-        <p class="now__meta">Last updated: March 2026</p>
+        <p class="section-label">Now</p>
+        <h2>What I'm into lately</h2>
+        <p class="now__meta">Updated July 2026</p>
       </div>
       <div class="now__grid">
         <div class="now__col reveal reveal-delay-1">
-          <h3 class="now__col-title">At work</h3>
+          <h3 class="now__col-title">Building</h3>
           <ul class="now__list">
-            <li>Software Engineer — Lead, building medical administration software for a healthcare department.</li>
-            <li>Newly in the lead role, figuring out what good leadership looks like from the inside of it rather than the textbook version.</li>
-            <li>Focused on clarity: better definitions of done, lighter processes, more reliable releases.</li>
+            <li>Getting Bitsync's mobile apps off the ground, starting with water reminders and budgeting on the go.</li>
+            <li>Shaping the community platform with friends, one weekend at a time.</li>
           </ul>
         </div>
         <div class="now__col reveal reveal-delay-2">
-          <h3 class="now__col-title">Building</h3>
+          <h3 class="now__col-title">Learning</h3>
           <ul class="now__list">
-            <li>Bitsync is live in beta — a personal finance and health dashboard I built for my own daily use.</li>
-            <li>A community collaboration platform for gated communities and neighbourhoods.</li>
-            <li>Planning mobile companion apps for Bitsync (water reminders, budget on the go) with a friend joining the UX design process.</li>
+            <li>Electronics fundamentals, slowly working toward DIY security gadgets I can build myself.</li>
+            <li>Poking at game development as a creative playground with friends.</li>
           </ul>
         </div>
         <div class="now__col reveal reveal-delay-3">
-          <h3 class="now__col-title">Learning & exploring</h3>
+          <h3 class="now__col-title">Curious about</h3>
           <ul class="now__list">
-            <li>Electronics fundamentals, working toward DIY security and physical computing projects.</li>
-            <li>Thinking seriously about game development as a creative direction with friends.</li>
-            <li>Considering structured study: a BA or IT leadership programme from 2026.</li>
+            <li>Where engineering and art overlap, and what happens when you build for feel instead of function.</li>
+            <li>Picking up some structured study again, just for the fun of learning.</li>
           </ul>
         </div>
       </div>
@@ -102,12 +99,14 @@
   }
 
   .now__list li::before {
-    content: "—";
+    content: "";
     position: absolute;
     left: 0;
-    color: var(--text-dim);
-    font-size: 0.75em;
-    top: 0.3em;
+    top: 0.65em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
   }
 
   @media (max-width: 900px) {

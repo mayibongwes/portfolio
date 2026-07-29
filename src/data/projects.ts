@@ -63,9 +63,9 @@ export const projects: Project[] = [
   {
     title: 'The day job',
     description:
-      'Software for healthcare administration, built with a small team. Not the flashy stuff, but the kind of work where reliability and clear communication matter more than anything. It pays for the fun projects above.',
+      'Software engineer on healthcare administration systems. Steady work on systems people rely on, where reliability and clear communication matter.',
     status: 'professional',
     context: 'Day job · Healthcare · Johannesburg',
-    tags: ['TypeScript', 'Healthcare systems'],
+    tags: ['Progress 4GL', 'Healthcare systems'],
   },
 ];
